@@ -1,14 +1,19 @@
-# -*- coding: utf-8 -*-
-
-import os
 import json
 import datetime as dt
+from typing import Any  # noqa
 
-from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text, ForeignKey
+from sqlalchemy import (
+    Text,
+    Column,
+    String,
+    Boolean,
+    Integer,
+    DateTime,
+    ForeignKey,
+)
 from sqlalchemy.ext.declarative import declarative_base
 
-
-Base = declarative_base()
+Base = declarative_base()  # type: Any
 ID_LEN = 100
 STR_LEN = 500
 
@@ -51,5 +56,5 @@ class Job(Base):
     is_finished = Column(Boolean, default=False)
     started_at = Column(DateTime)
     finished_at = Column(DateTime, default=dt.datetime.now())
-    file_id = Column(String(ID_LEN), ForeignKey('files.file_id'))
-    rule_id = Column(String(ID_LEN), ForeignKey('rules.rule_id'))
+    file_id = Column(String(ID_LEN), ForeignKey("files.file_id"))
+    rule_id = Column(String(ID_LEN), ForeignKey("rules.rule_id"))
